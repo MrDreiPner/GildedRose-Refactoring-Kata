@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
 
 namespace csharp
@@ -7,12 +8,19 @@ namespace csharp
     public class GildedRoseTest
     {
         [Test]
-        public void foo()
+        public void TestUpdateQuality()
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-            GildedRose app = new GildedRose(Items);
+            //Arrange
+            IList<Item> items = new List<Item> { new Item { Name = "Item", SellIn = 10, Quality = 10 } };
+            GildedRose app = new GildedRose(items);
+
+            //Act
             app.UpdateQuality();
-            Assert.AreEqual("fixme", Items[0].Name);
+
+            //Assert
+            Assert.AreEqual("Item", items[0].Name);
+            Assert.AreEqual(9, items[0].SellIn);
+            Assert.AreEqual(9, items[0].Quality);
         }
     }
 }
